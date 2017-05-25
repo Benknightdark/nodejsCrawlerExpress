@@ -18,7 +18,6 @@ app.use(cors())
 
 app.get('/', function (req, res, next) {
 
-
  rp('https://netbank.jihsunbank.com.tw/Rate/ExgRate.htm')
     .then(function (htmlString) {
       var $ = cheerio.load(htmlString);
@@ -34,16 +33,14 @@ app.get('/', function (req, res, next) {
                     var BuyRate = $($("td[class=TitleForRate]")[a]).next()
                     console.log("買匯：",$(BuyRate).text())
                     var SaleRate = $(BuyRate).next()
-                    console.log("賣匯：",$(SaleRate).text())
+                    console.log("賣匯:",$(SaleRate).text())
                     console.log("=======================================");
-              
                 }
-                res.json({msg: 'This is CORS-enabled for all origins!'})
-            }}).catch(function(err){
-                console.log(err)
-            })
 
-  
+                
+            }})
+
+  res.json({msg:"fff"})
 })
 
 app.listen(8099, function () {
